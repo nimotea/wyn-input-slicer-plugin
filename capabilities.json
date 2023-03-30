@@ -1,0 +1,71 @@
+{
+    "dataBinding": {
+        "dataRoles": [
+            {
+                "name": "dimensions",
+                "displayNameKey": "搜索字段",
+                "kind": "grouping"
+            }
+        ],
+        "dataViewMappings": [
+            {
+                "plain": {
+                    "require" :[{
+                        "dimensions" : {
+                            "max" : 1
+                        }
+                    }
+                    ]
+                }
+            }
+        ]
+    },
+    "options": {
+        "common" : {
+            "filter" : true
+        },
+        "visual" : [{
+            "displayName" : "搜索框样式配置",
+            "properties" : [
+                {
+                    "name" : "input_placeholder",
+                    "type" : "Text",
+                    "displayName" : "输入框占位符",
+                    "defaultValue" : "搜索相关字段..."
+                },
+                {
+                    "name" : "button_bgColor",
+                    "type" : "Color",
+                    "displayName" : "按钮背景色",
+                    "defaultValue" : "#1d4ed8"
+                },
+                {
+                    "name" : "button_text",
+                    "type" : "TextStyle",
+                    "displayName" : "按钮字体",
+                    "defaultValue" : "dashboard.textStyle"
+                },
+                {
+                    "name" : "input_bgColor",
+                    "type" : "Color",
+                    "displayName" : "输入框背景色",
+                    "defaultValue" : "dashboard.backgroundColor"
+                },
+                {
+                    "name" : "input_text",
+                    "type" : "TextStyle",
+                    "displayName" : "输入框字体",
+                    "defaultValue" : "dashboard.textStyle"
+                }
+            ]
+        }
+    ]
+        
+    },
+    "actions": [
+        {
+            "type" : "focus"
+        }
+    ],
+    "analysis": []
+}
