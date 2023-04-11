@@ -28,22 +28,28 @@
             "displayName" : "搜索框样式配置",
             "properties" : [
                 {
+                    "name" : "input_title",
+                    "type" : "Text",
+                    "displayName" : "标题",
+                    "defaultValue" : "搜索框标题"
+                },
+                {
+                    "name" : "title_textStyle",
+                    "type" : "TextStyle",
+                    "displayName" : "标题字体",
+                    "inheritFrom": "dashboard.titleTextStyle"
+                },
+                {
                     "name" : "input_placeholder",
                     "type" : "Text",
                     "displayName" : "输入框占位符",
                     "defaultValue" : "搜索相关字段..."
                 },
                 {
-                    "name" : "button_bgColor",
+                    "name" : "input_borderColor",
                     "type" : "Color",
-                    "displayName" : "按钮背景色",
-                    "defaultValue" : "#1d4ed8"
-                },
-                {
-                    "name" : "button_text",
-                    "type" : "TextStyle",
-                    "displayName" : "按钮字体",
-                    "defaultValue" : "dashboard.textStyle"
+                    "displayName" : "输入框边框颜色",
+                    "defaultValue" : "#7b7b7b"
                 },
                 {
                     "name" : "input_bgColor",
@@ -56,6 +62,22 @@
                     "type" : "TextStyle",
                     "displayName" : "输入框字体",
                     "defaultValue" : "dashboard.textStyle"
+                },
+                {
+                    "name" : "input_style",
+                    "type" : "Enum",
+                    "displayName" : "位置",
+                    "items" : [
+                        {
+                            "value" : "inline",
+                            "displayName" : "行内"
+                        },
+                        {
+                            "value" : "block",
+                            "displayName" : "外部"
+                        }
+                    ],
+                    "defaultValue" : "block"
                 }
             ]
         }
