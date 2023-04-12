@@ -111,6 +111,9 @@ export default class Visual extends WynVisual {
       this.filter = null;
       this.isMock = true;
     }
+    if(this.filter.getConditions().length==0){
+      this.inputEle.value ="";
+    }
   }
 
   public applyStyleOption = ()=>{
