@@ -1,6 +1,6 @@
 {
     "id": "928b8dc0-cdfe-11ed-8fd9-2113b4bdfeb2",
-    "name": "input-slicer",
+    "name": "搜索框",
     "displayName": "",
     "displayNameKey": "",
     "icon": "visualIcon",
@@ -9,7 +9,8 @@
     "externalCss": [],
     "assets": {
         "images": {
-            "visualIcon": "assets/search.png"
+            "visualIcon": "assets/search.png",
+            "resetIcon" : "assets/reset.png"
         }
     },
     "configuration": {},
