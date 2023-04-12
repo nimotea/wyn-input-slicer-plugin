@@ -46,6 +46,12 @@
                     "inheritFrom": "dashboard.titleTextStyle"
                 },
                 {
+                    "name" : "title_padding",
+                    "type" : "Position",
+                    "displayName" : "标题内边距",
+                    "defaultValue" : { "top" : 0,"left": 0,"right": 0 ,"bottom":0}
+                },
+                {
                     "name" : "input_placeholder",
                     "type" : "Text",
                     "displayName" : "输入框占位符",
@@ -61,13 +67,13 @@
                     "name" : "input_bgColor",
                     "type" : "Color",
                     "displayName" : "输入框背景色",
-                    "defaultValue" : "dashboard.backgroundColor"
+                    "inheritFrom" : "dashboard.backgroundColor"
                 },
                 {
                     "name" : "input_text",
                     "type" : "TextStyle",
                     "displayName" : "输入框字体",
-                    "defaultValue" : "dashboard.textStyle"
+                    "inheritFrom" : "dashboard.textStyle"
                 },
                 {
                     "name" : "input_style",

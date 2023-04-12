@@ -11,6 +11,7 @@ const TITLE_TEXT_STYLE = "title_textStyle";
 const INPUTSTYLE = "input_style";
 const INPUTBOCOLOR = "input_borderColor";
 const SHOWTITLE = "show_title";
+const TITLEPADDING = "title_padding";
 
 export default class Visual extends WynVisual {
 
@@ -145,6 +146,12 @@ export default class Visual extends WynVisual {
           this.titleEle.parentElement.style.display = "block";
       }
     }
+    if(this.styleOption[TITLEPADDING]){
+      this.titleEle.style.paddingLeft = `${this.styleOption[TITLEPADDING]["left"]}px`;
+      this.titleEle.style.paddingRight = `${this.styleOption[TITLEPADDING]["right"]}px`;
+      this.titleEle.style.paddingTop = `${this.styleOption[TITLEPADDING]["top"]}px`;
+      this.titleEle.style.paddingBottom = `${this.styleOption[TITLEPADDING]["bottom"]}px`;
+    }
 
     if(this.styleOption[INPUTBOCOLOR]){
       this.inputEle.style.borderColor = this.styleOption[INPUTBOCOLOR];
@@ -184,6 +191,7 @@ export default class Visual extends WynVisual {
     if(!showTitle){
       hiddenKey.push(TITLE);
       hiddenKey.push(TITLE_TEXT_STYLE);
+      hiddenKey.push(TITLEPADDING);
     }
     return hiddenKey;
   }
