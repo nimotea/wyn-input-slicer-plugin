@@ -10,6 +10,7 @@ const TITLE = "input_title";
 const TITLE_TEXT_STYLE = "title_textStyle";
 const INPUTSTYLE = "input_style";
 const INPUTBOCOLOR = "input_borderColor";
+const SHOWTITLE = "show_title";
 
 export default class Visual extends WynVisual {
 
@@ -64,11 +65,19 @@ export default class Visual extends WynVisual {
     this.inputEle.addEventListener('keydown',
     function(event:KeyboardEvent){
       if(event.keyCode == 13){
-      Visual.root.Submit(event);
+      Visual.root.Submit();
       }
   })
+  // 重置监听事件
+ /*  this.host.eventService.registerOnCustomEventCallback((name: string) => {
+    if(name == "reset"){
+      this.inputEle.value ="";
+      this.Submit();      
+    }
+  }); */
+
   }
-  private Submit = (e : Event)=>{
+  private Submit = ()=>{
     let val = this.inputEle.value;
     if(this.isMock){
       return;
@@ -106,6 +115,11 @@ export default class Visual extends WynVisual {
 
   public applyStyleOption = ()=>{
     let css = {};
+    if(this.styleOption[SHOWTITLE]){
+      this.titleEle.style.display = "block";
+    }else{
+      this.titleEle.style.display = "none";
+    }
     if(this.styleOption[PLACEHOLDER] != undefined){
       this.inputEle.placeholder = this.styleOption[PLACEHOLDER]||"";
     }
@@ -161,7 +175,14 @@ export default class Visual extends WynVisual {
   }
 
   public getInspectorHiddenState(options: VisualNS.IVisualUpdateOptions): string[] {
-    return null;
+    const styleConfig = options.properties;
+    let showTitle = styleConfig[SHOWTITLE];
+    let hiddenKey = [];
+    if(!showTitle){
+      hiddenKey.push(TITLE);
+      hiddenKey.push(TITLE_TEXT_STYLE);
+    }
+    return hiddenKey;
   }
 
   public getActionBarHiddenState(options: VisualNS.IVisualUpdateOptions): string[] {

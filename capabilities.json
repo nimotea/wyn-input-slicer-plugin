@@ -28,6 +28,12 @@
             "displayName" : "搜索框样式配置",
             "properties" : [
                 {
+                    "name" : "show_title",
+                    "type" : "Boolean",
+                    "displayName" : "是否展示标题",
+                    "defaultValue" : "true"
+                },
+                {
                     "name" : "input_title",
                     "type" : "Text",
                     "displayName" : "标题",
@@ -85,9 +91,7 @@
         
     },
     "actions": [
-        {
-            "type" : "focus"
-        }
+        
     ],
     "analysis": []
 }
