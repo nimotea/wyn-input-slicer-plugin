@@ -25,6 +25,20 @@
             "filter" : true
         },
         "visual" : [{
+
+                "type": "interaction",
+                "watchParameter": {
+                    "roles": [
+                        {
+                            "name": "target",
+                            "display": "target",
+                            "displayNameKey": "绑定参数"
+                        }
+                    ],
+                    "staticOnly": true
+                }
+            },
+            {
             "displayName" : "搜索框样式配置",
             "properties" : [
                 {
