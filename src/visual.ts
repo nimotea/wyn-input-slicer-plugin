@@ -29,6 +29,7 @@ export default class Visual extends WynVisual {
   private operator : any =Enums.AdvancedFilterOperator.Contains;
   private caseSensitive : boolean = false;
   private targetPara;
+  private once : number = 0;
   
   private static root : Visual;
 
@@ -63,53 +64,47 @@ export default class Visual extends WynVisual {
       Visual.root.Submit();
       }
   })
-  // 重置监听事件
- /*  this.host.eventService.registerOnCustomEventCallback((name: string) => {
-    if(name == "reset"){
-      this.inputEle.value ="";
-      this.Submit();      
-    }
-  }); */
+
 
   }
   private Submit = ()=>{
-    console.log("Submit");
     
     let val = this.inputEle.value;
+   
+    if(!this.isMock){
+      if(!val){
+        this.host.filterService.clean();
+      }else {
+        this.filter.setConditions([{
+          value: val,
+          operator: (this.operator) || Enums.AdvancedFilterOperator.Contains,
+          caseSensitive: this.caseSensitive,
+        }]);
+        this.host.filterService.applyFilter(this.filter);
+      }
+    }
     if(this.targetPara){
-      console.log("setPara");
-    
       this.host.parameterService.setParameter({
         name: this.targetPara.meta.name,
         value : [val],
       })
     }
-    if(this.isMock){
-      return;
-    }
-
-    if(!val){
-    console.log("cleanFilter");
-
-      this.host.filterService.clean();
-      return 
-    }else {
-    console.log("setFilter");
-
-      this.filter.setConditions([{
-        value: val,
-        operator: (this.operator) || Enums.AdvancedFilterOperator.Contains,
-        caseSensitive: this.caseSensitive,
-      }]);
-      this.host.filterService.applyFilter(this.filter);
-    }
   }
 
   public update(options: VisualNS.IVisualUpdateOptions) {
-    console.log("update");
 
     const dv = options.dataViews[0];
+
     this.targetPara = options.watchedParameters['target'];
+    if(this.once == 0){
+      (this.once)++;
+      if(this.targetPara){
+        this.host.parameterService.setParameter({
+          name: this.targetPara.meta.name,
+          value : [this.inputEle.value],
+        })
+      }
+    }
 
     this.styleOption = options.properties;
     this.applyStyleOption();
@@ -124,10 +119,9 @@ export default class Visual extends WynVisual {
       this.filter = null;
       this.isMock = true;
     }
-    console.log("updateIfCleanInput");
 
-    if(this.filter.getConditions().length==0){
-    console.log("CleanInput");
+    // removefilter
+    if(this.filter != null && this.filter.getConditions().length==0){
       this.inputEle.value ="";
     }
     
