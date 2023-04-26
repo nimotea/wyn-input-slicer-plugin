@@ -81,7 +81,8 @@
                     "name" : "input_bgColor",
                     "type" : "Color",
                     "displayName" : "输入框背景色",
-                    "inheritFrom" : "dashboard.backgroundColor"
+                    "inheritFrom" : "dashboard.backgroundColor",
+                    "defaultValue": "rgba(0, 0, 0, 0)"
                 },
                 {
                     "name" : "input_text",
@@ -89,7 +90,7 @@
                     "displayName" : "输入框字体",
                     "inheritFrom" : "dashboard.textStyle",
                     "defaultValue" : {
-                        "color" : "Black"
+                        "color" : "White"
                     }
                 },
                 {
