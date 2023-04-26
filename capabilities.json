@@ -87,7 +87,10 @@
                     "name" : "input_text",
                     "type" : "TextStyle",
                     "displayName" : "输入框字体",
-                    "inheritFrom" : "dashboard.textStyle"
+                    "inheritFrom" : "dashboard.textStyle",
+                    "defaultValue" : {
+                        "color" : "Black"
+                    }
                 },
                 {
                     "name" : "input_style",
