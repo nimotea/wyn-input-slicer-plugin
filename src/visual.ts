@@ -39,7 +39,14 @@ export default class Visual extends WynVisual {
     this.dom = dom;
     this.host = host;
     Visual.root = this;
-    dom.innerHTML = `
+  
+
+
+  }
+
+  private initDom(){
+
+    this.dom.innerHTML = `
 
     <div class="dd-chart-wrapper" style="overflow: hidden;align-items: center;">
       <div class="dd-chart-title">搜索框标题</div>
@@ -64,7 +71,6 @@ export default class Visual extends WynVisual {
       Visual.root.Submit();
       }
   })
-
 
   }
   private Submit = ()=>{
@@ -97,6 +103,7 @@ export default class Visual extends WynVisual {
 
     this.targetPara = options.watchedParameters['target'];
     if(this.once == 0){
+       this.initDom();
       (this.once)++;
       if(this.targetPara){
         this.host.parameterService.setParameter({
