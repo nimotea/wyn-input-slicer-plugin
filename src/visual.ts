@@ -12,8 +12,10 @@ const INPUTSTYLE = "input_style";
 const INPUTBOCOLOR = "input_borderColor";
 const SHOWTITLE = "show_title";
 const TITLEPADDING = "title_padding";
+const DEFAULTVALUE = "input_default_value";
 
 export default class Visual extends WynVisual {
+
 
   private dom : HTMLElement;
 
@@ -28,7 +30,7 @@ export default class Visual extends WynVisual {
 
   private operator : any =Enums.AdvancedFilterOperator.Contains;
   private caseSensitive : boolean = false;
-  private targetPara;
+  // private targetPara;
   private once : number = 0;
   
   private static root : Visual;
@@ -58,12 +60,10 @@ export default class Visual extends WynVisual {
 
 
     this.inputEle = document.getElementsByClassName("input-ele")[0] as HTMLInputElement;
-    // this.btnEle = document.getElementsByClassName("btn-ele")[0] as HTMLButtonElement;
     this.titleEle = document.getElementsByClassName("dd-chart-title")[0] as HTMLDivElement;
     this.titleEle = document.getElementsByClassName("dd-chart-title")[0] as HTMLDivElement;
 
 
-    // this.btnEle.addEventListener('click',this.Submit);
     this.inputEle.addEventListener('blur',this.Submit);
     this.inputEle.addEventListener('keydown',
     function(event:KeyboardEvent){
@@ -89,31 +89,19 @@ export default class Visual extends WynVisual {
         this.host.filterService.applyFilter(this.filter);
       }
     }
-    if(this.targetPara){
-      this.host.parameterService.setParameter({
-        name: this.targetPara.meta.name,
-        value : [val],
-      })
-    }
+   
   }
 
   public update(options: VisualNS.IVisualUpdateOptions) {
 
     const dv = options.dataViews[0];
 
-    this.targetPara = options.watchedParameters['target'];
+    this.styleOption = options.properties;
+
     if(this.once == 0){
        this.initDom();
-      (this.once)++;
-      if(this.targetPara){
-        this.host.parameterService.setParameter({
-          name: this.targetPara.meta.name,
-          value : [this.inputEle.value],
-        })
-      }
     }
 
-    this.styleOption = options.properties;
     this.applyStyleOption();
 
     if (dv && dv.plain) {
@@ -127,11 +115,12 @@ export default class Visual extends WynVisual {
       this.isMock = true;
     }
 
-    // removefilter
-    if(this.filter != null && this.filter.getConditions().length==0){
-      this.inputEle.value ="";
+    if(this.once == 0 && this.styleOption[DEFAULTVALUE]){
+      this.inputEle.value = this.styleOption[DEFAULTVALUE];
+      Visual.root.Submit();
     }
-    
+
+    (this.once)++;
   }
 
   public applyStyleOption = ()=>{
